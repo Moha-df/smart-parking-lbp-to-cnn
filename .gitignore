@@ -28,3 +28,11 @@ ENONCES-PERSO.md
 NOTES-PERSO.md
 LANCER.md
 _perso/
+
+# --- Descripteurs volumineux du TP 4 (regenerables, cf. son resultats/README.md) ---
+# Seuls global/ et grille2x2/ sont versionnes, comme exemples du format.
+04-parking-lbp-multiechelle/resultats/grille3x3/
+04-parking-lbp-multiechelle/resultats/grille4x4/
+04-parking-lbp-multiechelle/resultats/pyramide/
+04-parking-lbp-multiechelle/resultats/multirayon/
+04-parking-lbp-multiechelle/resultats/croise-camera-B/

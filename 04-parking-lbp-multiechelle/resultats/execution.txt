@@ -1,0 +1,63 @@
+Journal d'execution - 04-parking-lbp-multiechelle
+Genere le 2026-09-20 a 22:30
+
+$ python compare_modes.py
+resultats/global/training.txt : 200 lignes de 256 valeurs (100 libres, 100 occupes)
+resultats/global/test.txt : 200 lignes de 256 valeurs (100 libres, 100 occupes)
+resultats/grille2x2/training.txt : 200 lignes de 1024 valeurs (100 libres, 100 occupes)
+resultats/grille2x2/test.txt : 200 lignes de 1024 valeurs (100 libres, 100 occupes)
+resultats/grille3x3/training.txt : 200 lignes de 2304 valeurs (100 libres, 100 occupes)
+resultats/grille3x3/test.txt : 200 lignes de 2304 valeurs (100 libres, 100 occupes)
+resultats/grille4x4/training.txt : 200 lignes de 4096 valeurs (100 libres, 100 occupes)
+resultats/grille4x4/test.txt : 200 lignes de 4096 valeurs (100 libres, 100 occupes)
+resultats/pyramide/training.txt : 200 lignes de 5376 valeurs (100 libres, 100 occupes)
+resultats/pyramide/test.txt : 200 lignes de 5376 valeurs (100 libres, 100 occupes)
+resultats/multirayon/training.txt : 200 lignes de 768 valeurs (100 libres, 100 occupes)
+resultats/multirayon/test.txt : 200 lignes de 768 valeurs (100 libres, 100 occupes)
+
+Mode            Descripteur    Correct       Taux
+-------------------------------------------------
+global              256 val   195/200     97.50 %
+grille2x2          1024 val   196/200     98.00 %
+grille3x3          2304 val   193/200     96.50 %
+grille4x4          4096 val   193/200     96.50 %
+pyramide           5376 val   194/200     97.00 %
+multirayon          768 val   195/200     97.50 %
+
+
+Variante : entrainement sur la camera A, test sur la camera B
+
+$ python compare_modes.py --test-root ../B --out-dir resultats/croise-camera-B
+
+Mode            Descripteur    Correct       Taux
+-------------------------------------------------
+global              256 val   123/200     61.50 %
+grille2x2          1024 val   125/200     62.50 %
+grille3x3          2304 val   131/200     65.50 %
+grille4x4          4096 val   135/200     67.50 %
+pyramide           5376 val   126/200     63.00 %
+multirayon          768 val   124/200     62.00 %
+
+
+$ python benchmark.py
+
+Taux de reconnaissance sur 10 tirages independants
+
+Mode            Descripteur   Moyenne   Ecart-t       Min       Max
+-------------------------------------------------------------------
+grille4x4          4096 val    98.05%      0.82    96.50%    99.00%
+pyramide           5376 val    98.05%      0.79    97.00%   100.00%
+grille2x2          1024 val    98.00%      0.89    96.50%   100.00%
+grille3x3          2304 val    97.75%      0.93    96.50%    99.00%
+multirayon          768 val    97.55%      1.21    96.00%   100.00%
+global              256 val    97.20%      1.29    95.00%    99.00%
+
+Ecart entre le meilleur et le pire mode : 0.85 point
+Ecart-type moyen d'un mode d'un tirage a l'autre : 0.99 point
+
+
+$ python figures.py
+figure : resultats/decoupage-blocs.png
+figure : resultats/rayons.png
+figure : resultats/comparaison-modes.png
+figure : resultats/ecarts-apparies.png

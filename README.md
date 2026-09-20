@@ -4,13 +4,14 @@ Determination automatique de l'etat d'un emplacement de parking (libre ou
 occupe) a partir d'images de camera de surveillance, par descripteur de texture
 LBP et classification au plus proche voisin.
 
-Le depot regroupe trois etudes successives, chacune dans son repertoire :
+Le depot regroupe quatre etudes successives, chacune dans son repertoire :
 
 | Repertoire | Sujet | Resultat |
 | ---------- | ----- | -------- |
 | [`01-parking-lbp/`](01-parking-lbp/) | Descripteur LBP et classification au plus proche voisin | **97,50 %** de reconnaissance |
 | [`02-parking-distances/`](02-parking-distances/) | Influence de la metrique de comparaison d'histogrammes | 0,65 point separe 7 metriques |
 | [`03-parking-lbp-couleur/`](03-parking-lbp-couleur/) | Extension du LBP aux images couleur | 0,10 point separe 3 strategies |
+| [`04-parking-lbp-multiechelle/`](04-parking-lbp-multiechelle/) | Descripteurs multi-echelle, spatiaux et par rayon | **98,05 %**, et un classifieur plus regulier |
 
 Chaque repertoire est autonome : son `README.md` decrit la methode et les
 resultats, son dossier `resultats/` contient les descripteurs generes, le
@@ -74,6 +75,30 @@ meme texture locale, meme lorsqu'ils different nettement en luminosite.
 
 [Detail et figures](03-parking-lbp-couleur/)
 
+## 4. Descripteurs multi-echelle
+
+Le descripteur global compte les motifs sur toute l'image et perd donc leur
+position. L'approche multi-echelle y remedie selon deux axes : en decoupant
+l'image en blocs dont les histogrammes H1, H2, ... sont concatenes, et en
+prenant les 8 voisins sur un cercle de rayon croissant plutot que dans une
+fenetre 3x3.
+
+![Decoupage en blocs et concatenation](04-parking-lbp-multiechelle/resultats/decoupage-blocs.png)
+
+Sur 10 tirages, toutes les variantes multi-echelle depassent le descripteur
+global, et leur taux varie moins : l'ecart-type passe de 1,29 a 0,79 point. Le
+gain moyen reste modeste, 0,85 point, mais la comparaison appariee montre qu'il
+n'est pas uniforme : correle a -0,81 avec le taux du descripteur global, il est
+nul sur les tirages faciles et atteint +2,8 points sur les plus difficiles.
+
+![Comparaison appariee](04-parking-lbp-multiechelle/resultats/ecarts-apparies.png)
+
+L'apport du multi-echelle est donc moins d'elever le plafond que de rattraper
+les cas difficiles. La variante ou le jeu test provient d'une autre camera le
+confirme : le descripteur global tombe a 61,50 %, la grille 4x4 tient 67,50 %.
+
+[Detail et figures](04-parking-lbp-multiechelle/)
+
 ## Donnees
 
 Base CNRPark, imagettes 150x150 : <http://cnrpark.it/dataset/CNRPark-Patches-150x150.zip>
@@ -103,8 +128,9 @@ pip install -r requirements.txt
 cd 01-parking-lbp        && python build_dataset.py && python classify.py
 cd 02-parking-distances  && python build_dataset.py && python compare.py
 cd 03-parking-lbp-couleur && python compare_modes.py
+cd 04-parking-lbp-multiechelle && python compare_modes.py
 ```
 
 Chaque repertoire dispose en plus d'un `figures.py` regenerant ses figures, et
-les deux derniers d'un `benchmark.py` repetant l'experience sur plusieurs
+les trois derniers d'un `benchmark.py` repetant l'experience sur plusieurs
 tirages.
