@@ -1,0 +1,36 @@
+Journal d'execution - 03-parking-lbp-couleur
+Genere le 2026-09-20 a 22:07
+
+$ python compare_modes.py
+resultats/gray/training.txt : 200 lignes de 256 valeurs (100 libres, 100 occupes)
+resultats/gray/test.txt : 200 lignes de 256 valeurs (100 libres, 100 occupes)
+resultats/mosaic/training.txt : 200 lignes de 256 valeurs (100 libres, 100 occupes)
+resultats/mosaic/test.txt : 200 lignes de 256 valeurs (100 libres, 100 occupes)
+resultats/perchannel/training.txt : 200 lignes de 768 valeurs (100 libres, 100 occupes)
+resultats/perchannel/test.txt : 200 lignes de 768 valeurs (100 libres, 100 occupes)
+
+Mode            Descripteur    Correct       Taux
+-------------------------------------------------
+gray                 256 val   195/200     97.50 %
+mosaic               256 val   195/200     97.50 %
+perchannel           768 val   195/200     97.50 %
+
+
+$ python benchmark.py
+
+Taux de reconnaissance sur 10 tirages independants
+
+Mode             Moyenne   Ecart-t       Min       Max
+------------------------------------------------------
+perchannel        97.30%      1.52    94.50%    99.50%
+mosaic            97.25%      1.72    94.00%   100.00%
+gray              97.20%      1.63    94.50%    99.50%
+
+Ecart entre le meilleur et le pire mode : 0.10 point
+Ecart-type moyen d'un mode d'un tirage a l'autre : 1.62 point
+
+
+$ python figures.py
+figure : resultats/construction-mosaique.png
+figure : resultats/histogrammes-canaux.png
+figure : resultats/comparaison-modes.png

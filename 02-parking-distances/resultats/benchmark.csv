@@ -1,0 +1,71 @@
+metrique,tirage,taux
+L1 (valeurs absolues),0,99.50
+L1 (valeurs absolues),1,99.50
+L1 (valeurs absolues),2,96.50
+L1 (valeurs absolues),3,96.00
+L1 (valeurs absolues),4,97.50
+L1 (valeurs absolues),5,97.50
+L1 (valeurs absolues),6,94.50
+L1 (valeurs absolues),7,99.00
+L1 (valeurs absolues),8,95.50
+L1 (valeurs absolues),9,96.50
+L2 (euclidienne),0,97.50
+L2 (euclidienne),1,98.50
+L2 (euclidienne),2,96.50
+L2 (euclidienne),3,96.50
+L2 (euclidienne),4,96.00
+L2 (euclidienne),5,96.50
+L2 (euclidienne),6,94.00
+L2 (euclidienne),7,97.50
+L2 (euclidienne),8,96.50
+L2 (euclidienne),9,96.50
+L2 au carre,0,97.50
+L2 au carre,1,98.50
+L2 au carre,2,96.50
+L2 au carre,3,96.50
+L2 au carre,4,96.00
+L2 au carre,5,96.50
+L2 au carre,6,94.00
+L2 au carre,7,97.50
+L2 au carre,8,96.50
+L2 au carre,9,96.50
+Bhattacharyya (OpenCV),0,99.00
+Bhattacharyya (OpenCV),1,99.50
+Bhattacharyya (OpenCV),2,96.50
+Bhattacharyya (OpenCV),3,95.00
+Bhattacharyya (OpenCV),4,97.50
+Bhattacharyya (OpenCV),5,97.00
+Bhattacharyya (OpenCV),6,94.50
+Bhattacharyya (OpenCV),7,99.50
+Bhattacharyya (OpenCV),8,97.50
+Bhattacharyya (OpenCV),9,96.00
+Chi-2 (OpenCV),0,99.50
+Chi-2 (OpenCV),1,99.50
+Chi-2 (OpenCV),2,96.50
+Chi-2 (OpenCV),3,95.00
+Chi-2 (OpenCV),4,98.00
+Chi-2 (OpenCV),5,97.00
+Chi-2 (OpenCV),6,93.50
+Chi-2 (OpenCV),7,99.50
+Chi-2 (OpenCV),8,96.50
+Chi-2 (OpenCV),9,96.00
+Correlation (OpenCV),0,97.50
+Correlation (OpenCV),1,99.00
+Correlation (OpenCV),2,96.00
+Correlation (OpenCV),3,96.50
+Correlation (OpenCV),4,96.00
+Correlation (OpenCV),5,97.00
+Correlation (OpenCV),6,93.50
+Correlation (OpenCV),7,99.00
+Correlation (OpenCV),8,96.50
+Correlation (OpenCV),9,96.50
+Intersection (OpenCV),0,99.50
+Intersection (OpenCV),1,99.50
+Intersection (OpenCV),2,96.50
+Intersection (OpenCV),3,96.00
+Intersection (OpenCV),4,97.50
+Intersection (OpenCV),5,96.50
+Intersection (OpenCV),6,94.50
+Intersection (OpenCV),7,99.00
+Intersection (OpenCV),8,97.50
+Intersection (OpenCV),9,96.00

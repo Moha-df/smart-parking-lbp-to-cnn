@@ -1,0 +1,42 @@
+Journal d'execution - 02-parking-distances
+Genere le 2026-09-20 a 22:07
+
+$ python build_dataset.py
+resultats/training.txt : 200 lignes (100 libres, 100 occupes)
+resultats/test.txt : 200 lignes (100 libres, 100 occupes)
+
+$ python compare.py
+training : 200 descripteurs, test : 200 descripteurs
+
+Metrique                    Correct         Taux      Duree
+-----------------------------------------------------------
+L1 (valeurs absolues)      195/200        97.50 %      0.02 s
+L2 (euclidienne)           192/200        96.00 %      0.02 s
+L2 au carre                192/200        96.00 %      0.02 s
+Bhattacharyya (OpenCV)     195/200        97.50 %      0.10 s
+Chi-2 (OpenCV)             196/200        98.00 %      0.10 s
+Correlation (OpenCV)       192/200        96.00 %      0.10 s
+Intersection (OpenCV)      195/200        97.50 %      0.10 s
+
+
+$ python benchmark.py
+
+Taux de reconnaissance sur 10 tirages independants
+
+Metrique                   Moyenne   Ecart-t       Min       Max
+----------------------------------------------------------------
+Intersection (OpenCV)       97.25%      1.59    94.50%    99.50%
+L1 (valeurs absolues)       97.20%      1.63    94.50%    99.50%
+Bhattacharyya (OpenCV)      97.20%      1.68    94.50%    99.50%
+Chi-2 (OpenCV)              97.10%      1.93    93.50%    99.50%
+Correlation (OpenCV)        96.75%      1.50    93.50%    99.00%
+L2 (euclidienne)            96.60%      1.11    94.00%    98.50%
+L2 au carre                 96.60%      1.11    94.00%    98.50%
+
+Ecart entre la meilleure et la pire metrique : 0.65 point
+Ecart-type moyen d'une metrique d'un tirage a l'autre : 1.51 point
+
+
+$ python figures.py
+figure : resultats/comparaison-metriques.png
+figure : resultats/profils-distances.png

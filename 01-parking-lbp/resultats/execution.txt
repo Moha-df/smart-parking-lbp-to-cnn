@@ -1,0 +1,37 @@
+Journal d'execution - 01-parking-lbp
+Genere le 2026-09-20 a 22:07
+
+$ python build_dataset.py
+resultats/training.txt : 200 lignes (100 libres, 100 occupes)
+resultats/test.txt : 200 lignes (100 libres, 100 occupes)
+
+$ python classify.py
+Images test correctement reconnues : 195 / 200
+Taux de reconnaissance             : 97.50 %
+
+Matrice de confusion (lignes = verite, colonnes = prediction)
+            libre  occupe
+    libre      95       5
+    occupe      0     100
+
+
+Variante : entrainement sur la camera A, test sur la camera B
+
+$ python build_dataset.py --test-root ../B --out-dir resultats/croise-camera-B
+resultats/croise-camera-B/training.txt : 200 lignes (100 libres, 100 occupes)
+resultats/croise-camera-B/test.txt : 200 lignes (100 libres, 100 occupes)
+
+$ python classify.py --training resultats/croise-camera-B/training.txt --test resultats/croise-camera-B/test.txt
+Images test correctement reconnues : 123 / 200
+Taux de reconnaissance             : 61.50 %
+
+Matrice de confusion (lignes = verite, colonnes = prediction)
+            libre  occupe
+    libre      52      48
+    occupe     29      71
+
+
+$ python figures.py
+figure : resultats/principe-lbp.png
+figure : resultats/histogrammes-moyens.png
+figure : resultats/matrice-confusion.png

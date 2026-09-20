@@ -1,0 +1,30 @@
+# --- Jeu de donnees (a telecharger separement, cf. README) ---
+A/
+B/
+*.zip
+
+# --- Sorties de travail (les resultats versionnes sont dans */resultats/) ---
+out/
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+.python-version
+
+# --- Editeurs / OS ---
+.vscode/
+.idea/
+*.sln
+*.vcxproj*
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- Notes personnelles (non destinees au rendu) ---
+ENONCES-PERSO.md
+NOTES-PERSO.md
+LANCER.md
+_perso/
