@@ -12,6 +12,7 @@ Le depot regroupe quatre etudes successives, chacune dans son repertoire :
 | [`02-parking-distances/`](02-parking-distances/) | Influence de la metrique de comparaison d'histogrammes | 0,65 point separe 7 metriques |
 | [`03-parking-lbp-couleur/`](03-parking-lbp-couleur/) | Extension du LBP aux images couleur | 0,10 point separe 3 strategies |
 | [`04-parking-lbp-multiechelle/`](04-parking-lbp-multiechelle/) | Descripteurs multi-echelle, spatiaux et par rayon | **98,05 %**, et un classifieur plus regulier |
+| [`05-parking-cnn/`](05-parking-cnn/) | Apprentissage profond : un CNN entraine directement sur les pixels | **97,65 %** de moyenne, entre le LBP global et le LBP multi-echelle |
 
 Chaque repertoire est autonome : son `README.md` decrit la methode et les
 resultats, son dossier `resultats/` contient les descripteurs generes, le
@@ -99,6 +100,27 @@ confirme : le descripteur global tombe a 61,50 %, la grille 4x4 tient 67,50 %.
 
 [Detail et figures](04-parking-lbp-multiechelle/)
 
+## 5. Apprentissage profond
+
+Les quatre etudes precedentes reposent sur un descripteur fait main (LBP). La
+cinquieme remplace ce descripteur par un CNN entraine directement sur les
+pixels de l'imagette, avec le meme protocole (100 + 100 imagettes training,
+100 + 100 disjointes en test, 10 tirages independants) et, surtout, **les
+memes graines de tirage** que le benchmark LBP multi-echelle : chaque tirage
+pioche exactement les memes imagettes des deux cotes, ce qui permet une
+comparaison appariee CNN / LBP, pas seulement une comparaison de moyennes.
+
+![CNN face au LBP, memes tirages](05-parking-cnn/resultats/comparaison-cnn-lbp.png)
+
+**97,65 %** de moyenne sur les 10 tirages (ecart-type 1,16 point) : le CNN,
+entraine de zero sur seulement 200 imagettes, depasse le descripteur LBP
+global (97,20 %) de 0,45 point sans egaler le meilleur mode multi-echelle
+(pyramide, 98,05 %). La comparaison appariee montre un ecart tres variable
+d'un tirage a l'autre (de -2 a +4 points), sans lien evident avec la
+difficulte du tirage.
+
+[Detail, notebook et figures](05-parking-cnn/)
+
 ## Donnees
 
 Base CNRPark, imagettes 150x150 : <http://cnrpark.it/dataset/CNRPark-Patches-150x150.zip>
@@ -129,6 +151,7 @@ cd 01-parking-lbp        && python build_dataset.py && python classify.py
 cd 02-parking-distances  && python build_dataset.py && python compare.py
 cd 03-parking-lbp-couleur && python compare_modes.py
 cd 04-parking-lbp-multiechelle && python compare_modes.py
+cd 05-parking-cnn        && python benchmark.py && python figures.py
 ```
 
 Chaque repertoire dispose en plus d'un `figures.py` regenerant ses figures, et

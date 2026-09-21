@@ -1,0 +1,8 @@
+CNN            : 97.65 % de moyenne sur 10 tirages (ecart-type 1.16)
+LBP global     : 97.20 % (reference, TP 01/04)
+LBP pyramide   : 98.05 % (meilleur mode du TP 4)
+
+Le CNN depasse le descripteur LBP global (0.45 point) sans egaler le meilleur mode multi-echelle (0.40 point d'ecart).
+Comparaison appariee (memes imagettes, tirage par tirage) : ecart moyen +0.45 point, de -2.00 a +4.00 selon le tirage.
+
+Portee du resultat : le CNN est entraine de zero sur seulement 200 imagettes, sans pre-entrainement (pas de transfert depuis ImageNet, contrairement a MobileNetV2 dans le TP malware). Avec davantage de donnees d'entrainement, l'ecart attendu se creuserait en faveur du CNN ; a 200 imagettes, un descripteur fait main bien choisi reste competitif.
