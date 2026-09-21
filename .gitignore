@@ -36,3 +36,10 @@ _perso/
 04-parking-lbp-multiechelle/resultats/pyramide/
 04-parking-lbp-multiechelle/resultats/multirayon/
 04-parking-lbp-multiechelle/resultats/croise-camera-B/
+
+# --- Executables compiles (PyInstaller) : ~200 Mo, regenerables ---
+*.exe
+executables.zip
+build/
+dist/
+*.spec
